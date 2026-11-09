@@ -1,12 +1,8 @@
 
 import 'package:flutter/material.dart';
 
-const Color statNavy = Color(0xFF172B4D);
-const Color statBlue = Color(0xFF2878F0);
-
 class StatCard extends StatelessWidget {
-  final String title;
-  final String value;
+  final String title, value;
   final IconData icon;
   final Color iconColor;
   final double width;
@@ -18,7 +14,7 @@ class StatCard extends StatelessWidget {
     required this.value,
     required this.icon,
     required this.iconColor,
-    this.width = 210,
+    required this.width,
     this.onTap,
   });
 
@@ -27,57 +23,26 @@ class StatCard extends StatelessWidget {
     return SizedBox(
       width: width,
       child: Card(
-        elevation: 0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(22),
-          side: BorderSide(
-            color: Theme.of(context).dividerColor.withValues(alpha:0.12),
-          ),
-        ),
         child: InkWell(
           onTap: onTap,
-          borderRadius: BorderRadius.circular(22),
+          borderRadius: BorderRadius.circular(12),
           child: Padding(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.all(14),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CircleAvatar(
                   backgroundColor: iconColor,
-                  foregroundColor: statNavy,
-                  child: Icon(icon),
+                  child: Icon(icon, color: const Color(0xFF2878F0)),
                 ),
-                const SizedBox(height: 16),
-                Text(
-                  title,
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.onSurfaceVariant,
-                    fontSize: 13,
-                  ),
-                ),
+                const SizedBox(height: 12),
+                Text(title,
+                    style: const TextStyle(color: Colors.blueGrey)),
                 const SizedBox(height: 5),
-                FittedBox(
-                  fit: BoxFit.scaleDown,
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    value,
+                Text(value,
                     style: const TextStyle(
-                      fontSize: 22,
-                      fontWeight: FontWeight.w800,
-                    ),
-                  ),
-                ),
-                if (onTap != null)
-                  const Padding(
-                    padding: EdgeInsets.only(top: 8),
-                    child: Text(
-                      'Tap to edit',
-                      style: TextStyle(
-                        color: statBlue,
-                        fontSize: 11,
-                      ),
-                    ),
-                  ),
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold)),
               ],
             ),
           ),
